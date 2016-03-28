@@ -6,7 +6,7 @@ from werkzeug import secure_filename
 
 
 UPLOAD_FOLDER = '/home/tktr/tmp/flask'
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 app = Flask(__name__)
 
@@ -25,18 +25,17 @@ def allowed_file(filename):
         filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
-@app.route('/upload', methods=['GET', 'POST'])
+@app.route('/app', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'GET':
         return render_template('upload.html')
 
     if request.method == 'POST':
-        print "te"
         f = request.files['imgfile']
         if f and allowed_file(f.filename):
             filename = secure_filename(f.filename)
             f.save(os.path.join(UPLOAD_FOLDER, filename))
-            return redirect(url_for('uploaded_file', filename=filename))
+            return render_template('result.html')
 
 if __name__ == '__main__':
     # app.debug = True
