@@ -1,0 +1,26 @@
+.ghost{
+  display: inline-block;
+  padding: 20px 20px;
+  border: solid 2px #fff;
+  border-radius: 3px;
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.ghost:hover{
+  color: #333;
+  background: #fff;
+}
+header.jumbotron {
+    height: 800px;
+    background: #dimgray;
+    /* background:url("/static/img/bg.jpg") center 0 no-repeat; */
+    background-size: cover;
+}
+form img.thumb {
+    margin:0 5px 5px 0;
+    max-width:160px;
+    vertical-align:bottom;
+}

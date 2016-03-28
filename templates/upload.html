@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="form">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <form action="upload" method="post" class="form-inline" enctype="multipart/form-data">
+            <input type="file" name="imgfile" accept="image/jpeg,image/png">
+            <div id="thumb"></div>
+          <button type="submit" class="btn btn-default">Upload</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
