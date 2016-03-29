@@ -33,17 +33,18 @@ def call_classification_api(img_base):
     res = requests.post(END_POINT, json=req)
     return res.json()['result']
 
+
 def create_result_setting(res):
-    imglist = []
+    img_list = []
     for rate, name in res:
         width = int(BASE_WIDTH * float(rate.strip()[:-1]) * 0.01)
-        src = 'static/class/{}.jpg'.format(name.split(' ')[0].split(',')[0]) # for dog data
-        # src = 'static/class/{}.jpg'.format(name) # for kadono data
-        imglist.append({'src': src,
+        # src = 'static/class/{}.jpg'.format(name.split(' ')[0].split(',')[0]) # for dog data
+        src = u'static/class/{}.jpg'.format(name) # for kadono data
+        img_list.append({'src': src,
                         'width': width,
                         'name': name,
-                        'rate':rate})
-    return imglist
+                        'rate': rate})
+    return img_list
 
 
 @app.route('/app', methods=['GET', 'POST'])
