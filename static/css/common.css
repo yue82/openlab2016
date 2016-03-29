@@ -1,6 +1,14 @@
+html {
+    height:100%;
+
+}
 body {
+    height:100%;
     padding-top: 50px;
-    margin-bottom: -50px;
+}
+.top {
+    height:100%;
+    min-height:100%;
     background:url("/static/img/bg.jpg") center 0 no-repeat;
     background-position: center center;
     background-repeat: no-repeat;
@@ -15,7 +23,7 @@ body {
 }
 
 .startbtn {
-    margin-top: 200px
+    margin-top: 250px
 }
 
 .content {
