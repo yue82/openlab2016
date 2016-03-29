@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
+import time
+import base64
 from flask import Flask
 from flask import request, redirect, url_for, render_template
 from werkzeug import secure_filename
 
-
-UPLOAD_FOLDER = '/home/tktr/tmp/flask'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 app = Flask(__name__)
@@ -14,10 +14,16 @@ app = Flask(__name__)
 def show_index():
     return render_template('index.html')
 
+
 @app.route('/about')
 def show_about():
-    print "test"
     return render_template('about.html')
+
+
+# @app.route('/loading')
+# def show_about():
+#     time.sleep(3)
+#     return render_template('result.html')
 
 
 def allowed_file(filename):
@@ -31,11 +37,12 @@ def upload_file():
         return render_template('upload.html')
 
     if request.method == 'POST':
-        f = request.files['imgfile']
-        if f and allowed_file(f.filename):
-            filename = secure_filename(f.filename)
-            f.save(os.path.join(UPLOAD_FOLDER, filename))
+        imgfile = request.files['imgfile']
+        if imgfile and allowed_file(imgfile.filename):
+            enc_file = base64.urlsafe_b64encode(imgfile.read())
+
             return render_template('result.html')
+            # return render_template('loading.html')
 
 if __name__ == '__main__':
     # app.debug = True

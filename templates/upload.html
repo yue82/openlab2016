@@ -2,11 +2,11 @@
 {% block content %}
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <div class="block-center">
+    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+      <div class="content text-center">
 	<form action="app" method="post" enctype="multipart/form-data" class="text-center">
-	  <label class="control-label">Select File</label>
-	  <input id="imgfile" type="file" accept="image/*" class="file-loading">
+	  <label class="control-label">Select Picture</label>
+	  <input id="imgfile" name="imgfile" type="file" accept="image/*" class="file-loading">
 	  <script>
 	  $(document).on('ready', function() {
 	    $("#imgfile").fileinput({
