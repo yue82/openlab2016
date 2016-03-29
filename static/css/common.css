@@ -1,13 +1,12 @@
 body {
     padding-top: 50px;
     margin-bottom: -50px;
-}
-
-header.jumbotron {
-    height: 800px;
-    background: #dimgray;
     background:url("/static/img/bg.jpg") center 0 no-repeat;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
+    background-color: #464646;
 }
 
 .navbar {
