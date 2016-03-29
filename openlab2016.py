@@ -8,6 +8,7 @@ from flask import request, redirect, url_for, render_template
 from werkzeug import secure_filename
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+BASE_WIDTH = 600
 END_POINT = 'http://www.ai.cs.kobe-u.ac.jp/vision'
 
 app = Flask(__name__)
@@ -33,8 +34,16 @@ def call_classification_api(img_base):
     return res.json()['result']
 
 def create_result_setting(res):
-
-    return str(' '.join(res[0]))
+    imglist = []
+    for rate, name in res:
+        width = int(BASE_WIDTH * float(rate.strip()[:-1]) * 0.01)
+        src = 'static/class/{}.jpg'.format(name.split(' ')[0].split(',')[0]) # for dog data
+        # src = 'static/class/{}.jpg'.format(name) # for kadono data
+        imglist.append({'src': src,
+                        'width': width,
+                        'name': name,
+                        'rate':rate})
+    return imglist
 
 
 @app.route('/app', methods=['GET', 'POST'])
@@ -47,8 +56,8 @@ def upload_file(res=None):
         if img_file and allowed_file(img_file.filename):
             img_base = base64.b64encode(img_file.read())
             res = call_classification_api(img_base)
-            res_body = create_result_setting(res)
-            return render_template('result.html', res=res_body)
+            img_list = create_result_setting(res)
+            return render_template('result.html', img_list=img_list, originimg=img_base)
 
 if __name__ == '__main__':
     # app.debug = True
