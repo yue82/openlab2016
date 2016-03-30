@@ -41,9 +41,9 @@ def create_result_setting(res):
         # src = 'static/class/{}.jpg'.format(name.split(' ')[0].split(',')[0]) # for dog data
         src = u'static/class/{}.jpg'.format(name) # for kadono data
         img_list.append({'src': src,
-                        'width': width,
-                        'name': name,
-                        'rate': rate})
+                         'width': width,
+                         'name': name,
+                         'rate': rate.strip()})
     return img_list
 
 
