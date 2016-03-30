@@ -2,30 +2,55 @@
 {% block content %}
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
       <div class="content text-center">
-
 	<div>
 	  <img src="data:image/png;base64,{{originimg}}" width=200 alt="original" class="img-thumbnail"><br>
-	  Original
 	</div>
-	<div class="panel panel-default">
-	  <div class="panel-heading text-left">Classification Result</div>
-	  <div class="panel-body">
-	    {% if img_list %}
-	    <ul class="list-inline">
-	      {% for img in img_list %}
-	      <li><img src="{{img['src']}}" width={{img['width']}} alt="{{img['name']}}" class="img-thumbnail"><br>
-		{{img['name']}}<br>
+	{% if img_list %}
+	<h2>あなたは...{{img_list[0]['name']}}さんですか？</h2>
+	{% endif %}
+	<br><br>
+	<hr>
+	{% if img_list %}
+	<ul class="media-list">
+
+	  <li class="media">
+	    <div class="pull-left" href="#">
+	      <img src="{{img_list[0]['src']}}" width={{img_list[0]['width']}} alt="{{img_list[0]['name']}}" class="img-thumbnail">
+	    </div>
+	    <div class="media-boby">
+	      <br><br><br>
+	      <h1 class="media-header ">
+		{{img_list[0]['name']}}
+	      </h1>
+	      <h2>
+		  {{img_list[0]['rate']}}
+	      </h2>
+	    </div>
+	  </li>
+	  <hr>
+	  {% for img in img_list[1:] %}
+	  <li class="media">
+	    <div class="pull-left" href="#">
+	      <img src="{{img['src']}}" width={{img['width']}} alt="{{img['name']}}" class="img-thumbnail">
+	    </div>
+	    <div class="media-boby text-center">
+	      <br>
+	      <h4 class="media-header">
+		{{img['name']}}
+	      </h4>
+	      <h4>
 		{{img['rate']}}
-	      </li>
-	      {% else %}
-	      Error...
-	      {% endfor %}
-	    </ul>
-	    {% endif %}
-	  </div>
-	</div>
+	      </h4>
+	    </div>
+	  </li>
+	  <hr>
+	  {% endfor %}
+	</ul>
+	{% else %}
+	Error...
+	{% endif %}
       </div>
     </div>
   </div>
